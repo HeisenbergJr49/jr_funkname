@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Members UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="radio-container" class="radio-container hidden">
+        <div id="radio-panel" class="radio-panel">
+            <!-- Header -->
+            <div class="radio-header">
+                <div class="radio-header-content">
+                    <div class="radio-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12h18m0 0l-3-3m3 3l-3 3M9 21V9l-3 3"/>
+                        </svg>
+                    </div>
+                    <div class="radio-title">
+                        <span id="channel-name">Radio Channel</span>
+                        <span id="member-count" class="member-count">0 members</span>
+                    </div>
+                </div>
+                <div class="radio-controls">
+                    <button id="mini-toggle" class="control-btn" title="Toggle Mini Mode">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                        </svg>
+                    </button>
+                    <button id="close-btn" class="control-btn" title="Close">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Channel Input (shown when not in a channel) -->
+            <div id="channel-input" class="channel-input hidden">
+                <div class="input-group">
+                    <input type="number" id="channel-number" placeholder="Enter channel..." min="1" max="999">
+                    <button id="join-btn" class="join-btn">Join</button>
+                </div>
+            </div>
+
+            <!-- Members List -->
+            <div id="members-container" class="members-container">
+                <div id="members-list" class="members-list">
+                    <!-- Members will be dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Footer Actions -->
+            <div id="radio-footer" class="radio-footer">
+                <button id="leave-btn" class="leave-btn hidden">Leave Channel</button>
+                <div class="connection-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Connected</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Member Template -->
+    <template id="member-template">
+        <div class="member-item" data-player-id="">
+            <div class="member-avatar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+            </div>
+            <div class="member-info">
+                <span class="member-name"></span>
+                <span class="member-status"></span>
+            </div>
+            <div class="member-speaking">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>

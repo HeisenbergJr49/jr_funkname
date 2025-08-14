@@ -1,0 +1,421 @@
+/* ========================================
+   ESX Radio Members UI - Styles
+   Author: HeisenbergJr49
+   ======================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #ffffff;
+    background: transparent;
+    overflow: hidden;
+}
+
+.radio-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 320px;
+    max-height: calc(100vh - 40px);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.radio-container.visible {
+    pointer-events: all;
+}
+
+.radio-container.hidden {
+    display: none;
+}
+
+.radio-panel {
+    background: linear-gradient(145deg, rgba(26, 32, 46, 0.95), rgba(31, 41, 55, 0.95));
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transform: translateX(-100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radio-container.visible .radio-panel {
+    transform: translateX(0);
+}
+
+.radio-container.mini .radio-panel {
+    width: 200px;
+}
+
+/* Header */
+.radio-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.radio-header-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.radio-icon {
+    color: #10b981;
+    opacity: 0.9;
+}
+
+.radio-title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.radio-title span:first-child {
+    font-weight: 600;
+    font-size: 15px;
+    color: #ffffff;
+}
+
+.member-count {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+.radio-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* Channel Input */
+.channel-input {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-group {
+    display: flex;
+    gap: 8px;
+}
+
+#channel-number {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+#channel-number:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+#channel-number::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.join-btn {
+    background: #10b981;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 10px 16px;
+    transition: all 0.2s;
+}
+
+.join-btn:hover {
+    background: #059669;
+}
+
+.join-btn:active {
+    transform: translateY(1px);
+}
+
+/* Members Container */
+.members-container {
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.members-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.members-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.members-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.members-list {
+    padding: 8px 0;
+}
+
+/* Member Items */
+.member-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.member-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.member-item.speaking {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.member-item.speaking::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #10b981;
+}
+
+.member-avatar {
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.6);
+    margin-right: 12px;
+}
+
+.member-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.member-name {
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.member-status {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.member-speaking {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    color: #10b981;
+    transition: all 0.2s;
+}
+
+.member-item.speaking .member-speaking {
+    opacity: 1;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Footer */
+.radio-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.leave-btn {
+    background: #ef4444;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+    padding: 8px 12px;
+    transition: all 0.2s;
+}
+
+.leave-btn:hover {
+    background: #dc2626;
+}
+
+.leave-btn.hidden {
+    display: none;
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.status-text {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Mini Mode */
+.radio-container.mini .radio-header-content .radio-title span:last-child,
+.radio-container.mini .member-status,
+.radio-container.mini .radio-footer {
+    display: none;
+}
+
+.radio-container.mini .member-item {
+    padding: 8px 16px;
+}
+
+.radio-container.mini .member-avatar {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+}
+
+.radio-container.mini .member-name {
+    font-size: 13px;
+}
+
+/* Responsive adjustments */
+@media (max-height: 600px) {
+    .members-container {
+        max-height: 250px;
+    }
+}
+
+/* Animations */
+.member-item {
+    animation: slideInLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Theme variations */
+.radio-container.light .radio-panel {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+    color: #1f2937;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.radio-container.light .radio-header {
+    background: rgba(0, 0, 0, 0.05);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.radio-container.light #channel-number {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1f2937;
+}
+
+.radio-container.light .member-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.radio-container.light .member-avatar {
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.radio-container.light .member-name {
+    color: #1f2937;
+}
+
+.radio-container.light .member-status {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.radio-container.light .status-text {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Empty state */
+.members-list.empty::after {
+    content: 'No members in this channel';
+    display: block;
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
